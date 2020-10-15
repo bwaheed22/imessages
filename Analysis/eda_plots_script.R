@@ -24,11 +24,11 @@ greecegang %>%
   theme(legend.position = 'bottom', legend.title = element_blank())
 ggsave("Plots/grouptexts_byperson.png", width = 8, height = 5)
 
-greecegang %>% filter(year == 2020) %>% 
-  mutate(month = format(date, "%m")) %>%
-  group_by(month) %>% tally() %>%
-  ggplot(aes(x = month, y = n)) + 
-  geom_col()
+# greecegang %>% filter(year == 2020) %>% 
+#   mutate(month = format(date, "%m")) %>%
+#   group_by(month) %>% tally() %>%
+#   ggplot(aes(x = month, y = n)) + 
+#   geom_col()
 
 
 # average texts per day:

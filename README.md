@@ -5,8 +5,17 @@ This project analyzes two years of my text message history and focuses on a spec
 ## Group Chat Analysis
 
 <p align = "center">
-<img src = "Plots/greecegang_dailytexts.png", width = 80%>
-<img src = "Plots/greecegang_textspermonth.png", width = 80%>
+<img src = "Plots/grouptexts_dailytexts.png", height = 70%, width = 80%>
 </p>
 
-## Trends in messages over time
+<p align = "center">
+<img src = "Plots/grouptexts_byperson.png", height = 70%, width = 80%>
+</p>
+
+<p align = "center">
+<img src = "Plots/sentiment_density.png", height = 70%, width = 80%>
+</p>
+
+<p align = "center">
+<img src = "Plots/sentiment_monthly.png", height = 70%, width = 80%>
+</p>

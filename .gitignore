@@ -1,0 +1,6 @@
+chat.db
+*.csv
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata

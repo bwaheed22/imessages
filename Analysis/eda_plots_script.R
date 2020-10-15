@@ -19,17 +19,16 @@ greecegang %>%
   group_by(month, name) %>% tally() %>%
   ggplot(aes(x = month, y = n, color = name)) + 
   geom_col(aes(fill= name)) + facet_wrap(~name, ncol = 2) +
-  labs(title = "Number of Messages per person per Month", subtitle = "From 5/11/19 - 9/8/20",
+  labs(title = "Number of Messages per Month", subtitle = "By Person: From 5/11/19 - 9/8/20",
        x = "Month", y = "Number of Messages") + theme_minimal() + 
   theme(legend.position = 'bottom', legend.title = element_blank())
+ggsave("Plots/grouptexts_byperson.png", width = 8, height = 5)
 
 greecegang %>% filter(year == 2020) %>% 
   mutate(month = format(date, "%m")) %>%
   group_by(month) %>% tally() %>%
   ggplot(aes(x = month, y = n)) + 
   geom_col()
-
-ggsave("Plots/grouptexts_byperson.png", width = 8, height = 5)
 
 
 # average texts per day:
@@ -53,7 +52,7 @@ greecegang %>% group_by(date, name) %>% tally() %>% group_by(name) %>%
     family = 'Helvetica'
   ) +
   labs(
-    title = "Greece Gang Daily Texts",
+    title = "Group Daily Texts",
     subtitle = "7-Day Moving Average",
     x = NULL,
     y = NULL

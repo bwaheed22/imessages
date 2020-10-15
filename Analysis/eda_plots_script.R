@@ -2,6 +2,7 @@ library(tidyverse)
 library(lubridate)
 
 greecegang <- read.csv("/Users/mbp/Documents/Side-Projects/iMessage_Analysis/greecegang_senti.csv")
+messages <- read.csv("/Users/mbp/Documents/Side-Projects/iMessage_Analysis/imessage_data.csv")
 
 # Explore the data:
 head(greecegang)
@@ -27,6 +28,8 @@ greecegang %>% filter(year == 2020) %>%
   group_by(month) %>% tally() %>%
   ggplot(aes(x = month, y = n)) + 
   geom_col()
+
+ggsave("Plots/grouptexts_byperson.png", width = 8, height = 5)
 
 
 # average texts per day:
@@ -64,12 +67,27 @@ greecegang %>% group_by(date, name) %>% tally() %>% group_by(name) %>%
   theme_minimal() +
   theme(legend.position = 'bottom', legend.title = element_blank(),
         axis.line = element_line())
+ggsave("Plots/grouptexts_dailytexts.png", width = 8, height = 5)
 
 # Sentiment analysis:
-plot(density(greecegang$sentiment))
+
+# Distribution of sentiment scores:
+greecegang %>% ggplot(., aes(x = sentiment)) + 
+  geom_density(fill = 'red', alpha = 0.6) + 
+  labs(title = "Distribution of Sentiment Scores - Group Chat",
+       x = "Sentiment Score",
+       y = "Density") + 
+       theme_minimal()
+ggsave("Plots/sentiment_density.png")
+
+# Average sentiment score per month:
 greecegang %>%
-  mutate(month = format(date, "%m")) %>%
-  group_by(month) %>% summarise(mean_sent = mean(sentiment)) %>%
-  ggplot(aes(x = month, y = mean_sent)) + geom_col()
+mutate(month = format(date, "%m")) %>%
+group_by(month) %>% summarise(mean_sent = mean(sentiment)) %>%
+ggplot(aes(x = month, y = mean_sent)) + geom_col(position = "dodge", fill = "blue", alpha = 0.3) + 
+labs(title = "Monthly Average Sentiment Scores",
+      x = "Month",
+      y = "Average Sentiment Score") + theme_minimal()
+ggsave("Plots/sentiment_monthly.png", width = 8, height = 5)
        
   
